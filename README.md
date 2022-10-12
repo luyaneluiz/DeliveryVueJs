@@ -1,4 +1,4 @@
-# 1_vue_page
+# DeliveryVue
 
 ## Project setup
 ```
