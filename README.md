@@ -1,4 +1,4 @@
-# 1_vue_page
+# DeliveryVue
 
 ## Project setup
 ```
@@ -13,6 +13,11 @@ npm run serve
 ### Compiles and minifies for production
 ```
 npm run build
+```
+
+### Start API Json
+```
+npm run backend
 ```
 
 ### Customize configuration
