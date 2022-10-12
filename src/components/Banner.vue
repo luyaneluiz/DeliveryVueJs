@@ -1,6 +1,9 @@
 <template>
-  <div id="main-banner">
-    <h1>Make Your Burger</h1>
+  <div class="main-banner">
+    <div class="banner-design"></div>
+    <div class="banner-text">
+      <h1>Pizza Maker</h1>
+    </div>
   </div>
 </template>
 
@@ -11,21 +14,40 @@ export default {
 </script>
 
 <style scoped>
-#main-banner {
-  background-image: url("/public/img/burger.jpg");
-  background-position: 0 -310px;
+.main-banner {
+  background-image: url("/public/img/pizza.jpg");
+  background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
   height: 500px;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  overflow: hidden;
+  position: relative;
 }
 
-#main-banner h1 {
+.banner-design {
+  border-radius: 20px;
+  height: 500px;
+  width: 500px;
+  position: relative;
+  left: -200px;
+  margin: 0;
+  background-color: rgba(233, 204, 99, 0.578);
+  rotate: 50deg;
+}
+
+.banner-text {
+  position: absolute;
+  width: 300px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.banner-text h1 {
   color: #fff;
   text-align: center;
   font-size: 60px;
-  padding: 20px 40px;
-  background-color: #222;
+  margin: 0;
 }
 </style>

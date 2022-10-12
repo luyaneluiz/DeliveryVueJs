@@ -19,8 +19,8 @@ export default {
 
 <style scoped>
 #nav {
-  background-color: #222;
-  border-bottom: 4px solid #111;
+  background-color: rgb(255, 255, 255);
+  border-bottom: 4px solid #7c600f;
   padding: 15px 50px;
   display: flex;
   justify-content: space-between;
@@ -33,13 +33,13 @@ export default {
 }
 
 #nav a {
-  color: #fcba03;
+  color: #7c600f;
   text-decoration: none;
   margin: 12px;
   transition: 0.5s;
 }
 
 #nav a:hover {
-  color: #fff;
+  color: #c89708;
 }
 </style>
