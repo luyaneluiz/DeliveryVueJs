@@ -19,7 +19,7 @@ export default {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 500px;
+  height: 550px;
   display: flex;
   overflow: hidden;
   position: relative;
