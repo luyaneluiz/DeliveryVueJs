@@ -1,26 +1,27 @@
 <template>
-  <div id="burger-table">
+  <div id="pizza-table">
     <Message :msg="msg" v-show="msg" />
     <div>
-      <div id="burger-table-heading">
+      <div id="pizza-table-heading">
         <div class="order-id">#:</div>
         <div>Cliente:</div>
-        <div>Pão:</div>
-        <div>Carne:</div>
-        <div>Opcionais:</div>
+        <div>Borda:</div>
+        <div>Sabor:</div>
+        <div>Adicionais:</div>
         <div>Ações:</div>
       </div>
     </div>
-    <div id="burger-table-rows">
-      <div class="burger-table-row" v-for="burger in burgers" :key="burger.id">
-        <div class="order-number">{{ burger.id }}</div>
-        <div>{{ burger.nome }}</div>
-        <div>{{ burger.pao }}</div>
-        <div>{{ burger.carne }}</div>
+
+    <div id="pizza-table-rows">
+      <div class="pizza-table-row" v-for="pizza in pizzas" :key="pizza.id">
+        <div class="order-number">{{ pizza.id }}</div>
+        <div>{{ pizza.nome }}</div>
+        <div>{{ pizza.borda }}</div>
+        <div>{{ pizza.sabor }}</div>
         <div>
           <ul>
-            <li v-for="(opcional, index) in burger.opcionais" :key="index">
-              {{ opcional }}
+            <li v-for="(adicional, index) in pizza.adicionais" :key="index">
+              {{ adicional }}
             </li>
           </ul>
         </div>
@@ -28,19 +29,19 @@
           <select
             name="status"
             class="status"
-            @change="updateBurger($event, burger.id)"
+            @change="updatePizza($event, pizza.id)"
           >
             <option value="">Selecione:</option>
             <option
               v-for="s in status"
               :key="s.id"
               :value="s.tipo"
-              :selected="burger.status == s.tipo"
+              :selected="pizza.status == s.tipo"
             >
               {{ s.tipo }}
             </option>
           </select>
-          <button class="delete-btn" @click="deleteBurger(burger.id)">
+          <button class="delete-btn" @click="deletePizza(pizza.id)">
             Cancelar
           </button>
         </div>
@@ -56,8 +57,8 @@ export default {
   name: "Dashboard",
   data() {
     return {
-      burgers: null,
-      burger_id: null,
+      pizzas: null,
+      pizza_id: null,
       status: [],
       msg: null,
     };
@@ -67,11 +68,11 @@ export default {
   },
   methods: {
     async getPedidos() {
-      const req = await fetch("http://localhost:3000/burgers");
+      const req = await fetch("http://localhost:3000/pizzas");
       const data = await req.json();
 
-      this.burgers = data;
-      console.log(this.burgers);
+      this.pizzas = data;
+      console.log(this.pizzas);
 
       this.getStatus();
     },
@@ -83,8 +84,8 @@ export default {
       this.status = data;
     },
 
-    async deleteBurger(id) {
-      const req = await fetch(`http://localhost:3000/burgers/${id}`, {
+    async deletePizza(id) {
+      const req = await fetch(`http://localhost:3000/pizzas/${id}`, {
         method: "DELETE",
       });
 
@@ -97,10 +98,10 @@ export default {
       this.getPedidos();
     },
 
-    async updateBurger(event, id) {
+    async updatePizza(event, id) {
       const option = event.target.value;
       const dataJson = JSON.stringify({ status: option });
-      const req = await fetch(`http://localhost:3000/burgers/${id}`, {
+      const req = await fetch(`http://localhost:3000/pizzas/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: dataJson,
@@ -122,37 +123,37 @@ export default {
 </script>
 
 <style scoped>
-#burger-table {
+#pizza-table {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-#burger-table-heading,
-#burger-table-rows,
-.burger-table-row {
+#pizza-table-heading,
+#pizza-table-rows,
+.pizza-table-row {
   display: flex;
   flex-wrap: wrap;
 }
 
-#burger-table-heading {
+#pizza-table-heading {
   font-weight: bold;
   padding: 12px;
   border-bottom: 3px solid #333;
 }
 
-#burger-table-heading div,
-.burger-table-row div {
+#pizza-table-heading div,
+.pizza-table-row div {
   width: 16%;
 }
 
-.burger-table-row {
+.pizza-table-row {
   width: 100%;
   padding: 12px;
   border-bottom: 1px solid #ccc;
 }
 
-#burger-table-heading .order-id,
-.burger-table-row .order-number {
+#pizza-table-heading .order-id,
+.pizza-table-row .order-number {
   width: 5%;
 }
 

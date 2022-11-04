@@ -3,20 +3,20 @@
     <Banner />
     <div class="main-container">
       <h1>HOME</h1>
-      <BurgerForm />
+      <PizzaForm />
     </div>
   </div>
 </template>
 
 <script>
 import Banner from "../components/Banner.vue";
-import BurgerForm from "../components/BurguerForm.vue";
+import PizzaForm from "../components/PizzaForm.vue";
 
 export default {
   name: "Home",
   components: {
     Banner,
-    BurgerForm,
+    PizzaForm,
   },
 };
 </script>

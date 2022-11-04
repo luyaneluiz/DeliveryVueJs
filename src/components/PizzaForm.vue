@@ -2,7 +2,7 @@
   <div>
     <Message :msg="msg" v-show="msg" />
     <div>
-      <form id="burger-form" @submit="createBurger">
+      <form id="pizza-form" @submit="createPizza">
         <div class="input-container">
           <label for="nome">Nome do cliente:</label>
           <input
@@ -14,41 +14,46 @@
           />
         </div>
         <div class="input-container">
-          <label for="pao">Escolha o pão:</label>
-          <select name="pao" id="pao" v-model="pao">
-            <option value="">Selecione seu pão</option>
-            <option v-for="pao in paes" :key="pao.id" :value="pao.tipo">
-              {{ pao.tipo }}
+          <label for="borda">Escolha a borda:</label>
+          <select name="borda" id="borda" v-model="borda">
+            <option value="">Selecione a borda</option>
+            <option v-for="borda in bordas" :key="borda.id" :value="borda.tipo">
+              {{ borda.tipo }}
             </option>
           </select>
         </div>
         <div class="input-container">
-          <label for="carne">Escolha a carne:</label>
-          <select name="carne" id="carne" v-model="carne">
-            <option value="">Selecione a carne</option>
-            <option v-for="carne in carnes" :key="carne.id" :value="carne.tipo">
-              {{ carne.tipo }}
+          <label for="sabor">Escolha a sabor:</label>
+          <select name="sabor" id="sabor" v-model="sabor">
+            <option value="">Selecione o sabor</option>
+            <option
+              v-for="sabor in sabores"
+              :key="sabor.id"
+              :value="sabor.tipo"
+            >
+              {{ sabor.tipo }}
             </option>
           </select>
         </div>
-        <div id="#opcionais-container" class="input-container">
-          <label id="opcionais-title" for="opcionais">Adicionais:</label>
+        <div id="#adicionais-container" class="input-container">
+          <label id="adicionais-title" for="adicionais">Adicionais:</label>
           <div
             class="checkbox-container"
-            v-for="opcional in opcionaisdata"
-            :key="opcional.id"
+            v-for="adiconal in adicionaisdata"
+            :key="adiconal.id"
           >
             <input
               type="checkbox"
-              name="opcionais"
-              v-model="opcionais"
-              :value="opcional.tipo"
+              name="adicionais"
+              v-model="adicionais"
+              :value="adiconal.tipo"
             />
-            <span>{{ opcional.tipo }}</span>
+            <span>{{ adiconal.tipo }}</span>
           </div>
         </div>
+
         <div class="input-container">
-          <input type="submit" class="submit-btn" value="Criar meu Burger" />
+          <input type="submit" class="submit-btn" value="Criar minha Pizza" />
         </div>
       </form>
     </div>
@@ -58,16 +63,16 @@
 <script>
 import Message from "./Message.vue";
 export default {
-  name: "BurgerForm",
+  name: "PizzaForm",
   data() {
     return {
-      paes: null,
-      carnes: null,
-      opcionaisdata: null,
+      bordas: null,
+      sabores: null,
+      adicionaisdata: null,
       nome: null,
-      pao: null,
-      carne: null,
-      opcionais: [],
+      borda: null,
+      sabor: null,
+      adicionais: [],
       status: "Solicitado",
       msg: null,
     };
@@ -80,24 +85,26 @@ export default {
       const req = await fetch("http://localhost:3000/ingredientes");
       const data = await req.json();
 
-      this.paes = data.paes;
-      this.carnes = data.carnes;
-      this.opcionaisdata = data.opcionais;
+      this.bordas = data.bordas;
+      this.sabores = data.sabores;
+      this.adicionaisdata = data.adicionais;
     },
-    async createBurger(e) {
+    async createPizza(e) {
       e.preventDefault();
 
       const data = {
         nome: this.nome,
-        carne: this.carne,
-        pao: this.pao,
-        opcionais: Array.from(this.opcionais),
+        sabor: this.sabor,
+        borda: this.borda,
+        adicionais: Array.from(this.adicionais),
         status: "Solicitado",
       };
 
+      console.log(data);
+
       const dataJson = JSON.stringify(data);
 
-      const req = await fetch("http://localhost:3000/burgers", {
+      const req = await fetch("http://localhost:3000/pizzas", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: dataJson,
@@ -110,9 +117,9 @@ export default {
       setTimeout(() => (this.msg = ""), 3000);
 
       this.nome = "";
-      this.pao = "";
-      this.carne = "";
-      this.opcionais = "";
+      this.borda = "";
+      this.sabor = "";
+      this.adicionais = "";
     },
   },
   mounted() {
@@ -122,7 +129,7 @@ export default {
 </script>
 
 <style scoped>
-#burger-form {
+#pizza-form {
   max-width: 400px;
   margin: 0 auto;
 }
@@ -147,12 +154,12 @@ select {
   width: 300px;
 }
 
-#opcionais-container {
+#adicionais-container {
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-#opcionais-title {
+#adicionais-title {
   width: 100%;
 }
 

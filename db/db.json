@@ -1,65 +1,73 @@
 {
   "ingredientes": {
-    "paes": [
+    "bordas": [
       {
         "id": 1,
-        "tipo": "Italiano Branco"
+        "tipo": "Sem borda"
       },
       {
         "id": 2,
-        "tipo": "3 Queijos"
+        "tipo": "Catupiry"
       },
       {
         "id": 3,
-        "tipo": "Parmesão e Orégano"
+        "tipo": "4 queijos"
       },
       {
         "id": 4,
-        "tipo": "Integral"
+        "tipo": "Chocolate preto"
+      },
+      {
+        "id": 5,
+        "tipo": "Chocolate branco"
       }
     ],
-    "carnes": [
+    "sabores": [
       {
         "id": 1,
-        "tipo": "Maminha"
+        "tipo": "4 queijos"
       },
       {
         "id": 2,
-        "tipo": "Alcatra"
+        "tipo": "Alho e Óleo"
       },
       {
         "id": 3,
-        "tipo": "Picanha"
+        "tipo": "Marguerita"
       },
       {
         "id": 4,
-        "tipo": "Veggie burger"
+        "tipo": "Chocolate com morango"
+      },
+      {
+        "id": 5,
+        "tipo": "Prestígio"
       }
     ],
-    "opcionais": [
+    "adicionais": [
       {
         "id": 1,
-        "tipo": "Bacon"
+        "tipo": "+ Queijo"
       },
       {
         "id": 2,
-        "tipo": "Cheddar"
+        "tipo": "+ Cheddar"
       },
       {
         "id": 3,
-        "tipo": "Salame"
+        "tipo": "+ Catupiry"
       },
       {
         "id": 4,
         "tipo": "Tomate"
       },
       {
-        "id": 4,
+        "id": 5,
         "tipo": "Cebola roxa"
       },
       {
-        "id": 4,
-        "tipo": "Pepino"
+        "id": 6,
+        "tipo": "Queijo vegetal"
       }
     ]
   },
@@ -77,51 +85,16 @@
       "tipo": "Finalizado"
     }
   ],
-  "burgers": [
+  "pizzas": [
     {
-      "nome": "Matheus Battisti",
-      "carne": "Picanha",
-      "pao": "Italiano Branco",
-      "opcionais": [
-        "Bacon",
-        "Salame",
-        "Cebola roxa"
+      "nome": "Luyane Luiz",
+      "sabor": "Alho e Óleo",
+      "borda": "Sem borda",
+      "adicionais": [
+        "Queijo vegetal"
       ],
       "status": "Em produção",
       "id": 1
-    },
-    {
-      "nome": "João Coelho",
-      "carne": "Maminha",
-      "pao": "3 Queijos",
-      "opcionais": [
-        "Salame",
-        "Cebola roxa"
-      ],
-      "status": "Solicitado",
-      "id": 4
-    },
-    {
-      "nome": "Luyane Luiz",
-      "carne": "Veggie burger",
-      "pao": "Integral",
-      "opcionais": [
-        "Tomate",
-        "Cebola roxa",
-        "Pepino"
-      ],
-      "status": "Em produção",
-      "id": 7
-    },
-    {
-      "nome": "Joana",
-      "carne": "Alcatra",
-      "pao": "3 Queijos",
-      "opcionais": [
-        "Bacon"
-      ],
-      "status": "Solicitado",
-      "id": 9
     }
   ]
 }
