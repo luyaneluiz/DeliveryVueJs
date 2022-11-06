@@ -14,12 +14,13 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap");
 .main-banner {
-  background-image: url("/public/img/pizza.jpg");
+  background-image: url("../assets/banner.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 550px;
+  height: 600px;
   display: flex;
   overflow: hidden;
   position: relative;
@@ -27,7 +28,7 @@ export default {
 
 .banner-design {
   border-radius: 20px;
-  height: 500px;
+  height: 600px;
   width: 500px;
   position: relative;
   left: -200px;
@@ -47,6 +48,7 @@ export default {
 .banner-text h1 {
   color: #fff;
   text-align: center;
+  font-family: "Fjalla One", sans-serif;
   font-size: 60px;
   margin: 0;
 }

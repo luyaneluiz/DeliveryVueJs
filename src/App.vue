@@ -40,7 +40,7 @@ export default {
 h1 {
   text-align: center;
   font-size: 42px;
-  margin-bottom: 30px;
+  margin: 30px 0;
   color: #222;
 }
 </style>

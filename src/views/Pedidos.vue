@@ -1,5 +1,5 @@
 <template>
-  <div class="main-container">
+  <div class="main-container pedidos">
     <h1>Gerenciar Pedidos</h1>
     <Dashboard />
   </div>
@@ -15,3 +15,11 @@ export default {
   },
 };
 </script>
+
+<style>
+.main-container.pedidos {
+  margin: 0 50px;
+  padding-top: 109px;
+  height: calc(100vh - 100px);
+}
+</style>
