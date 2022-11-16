@@ -33,7 +33,7 @@ export default {
 
 <style scoped>
 #nav {
-  position: absolute;
+  position: fixed;
   z-index: 2;
   width: 100%;
   padding: 15px 50px;
@@ -51,11 +51,11 @@ export default {
 
 .navigator {
   display: flex;
-  gap: 5px;
+  gap: 15px;
 }
 
 .navigator svg:hover path {
-  transition: 0.5s;
-  fill: #d1c6b9;
+  transition: 0.8s;
+  fill: #dac3a6;
 }
 </style>

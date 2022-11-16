@@ -29,7 +29,7 @@
       },
       {
         "id": 2,
-        "tipo": "Alho e Óleo"
+        "tipo": "Frango com catupiry"
       },
       {
         "id": 3,
@@ -37,11 +37,11 @@
       },
       {
         "id": 4,
-        "tipo": "Chocolate com morango"
+        "tipo": "Vegetais"
       },
       {
         "id": 5,
-        "tipo": "Prestígio"
+        "tipo": "Calabresa"
       }
     ],
     "adicionais": [
@@ -90,9 +90,7 @@
       "nome": "Luyane Luiz",
       "sabor": "Alho e Óleo",
       "borda": "Sem borda",
-      "adicionais": [
-        "Queijo vegetal"
-      ],
+      "adicionais": ["Queijo vegetal"],
       "status": "Em produção",
       "id": 1
     }

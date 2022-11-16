@@ -2,7 +2,6 @@
   <div>
     <Banner />
     <div class="main-container">
-      <h1>HOME</h1>
       <PizzaForm />
     </div>
   </div>

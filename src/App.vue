@@ -2,18 +2,15 @@
   <div>
     <Navbar :logo="logo_src" :alt="app_name" />
     <router-view />
-    <Footer />
   </div>
 </template>
 
 <script>
 import Navbar from "./components/Navbar.vue";
-import Footer from "./components/Footer.vue";
 
 export default {
   components: {
     Navbar,
-    Footer,
   },
   data() {
     return {
@@ -25,6 +22,8 @@ export default {
 </script>
 
 <style>
+@import "boxicons";
+
 * {
   margin: 0;
   padding: 0;
@@ -40,7 +39,5 @@ export default {
 h1 {
   text-align: center;
   font-size: 42px;
-  margin: 30px 0;
-  color: #222;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <Message :msg="msg" v-show="msg" />
-    <div>
+    <!-- <div>
       <form id="pizza-form" @submit="createPizza">
         <div class="input-container">
           <label for="nome">Nome do cliente:</label>
@@ -56,6 +56,77 @@
           <input type="submit" class="submit-btn" value="Criar minha Pizza" />
         </div>
       </form>
+    </div> -->
+
+    <div class="title">
+      <h1>Pepperoni Pizza</h1>
+      <p>THE MOST CHOSEN</p>
+    </div>
+
+    <div class="info__container">
+      <div class="options">
+        <select name="borda" id="borda" v-model="borda">
+          <option value="0" selected>Change board</option>
+          <option v-for="borda in bordas" :key="borda.id" :value="borda.tipo">
+            {{ borda.tipo }}
+          </option>
+        </select>
+
+        <button>
+          <i class="bx bx-plus"></i>
+          Aditionals
+        </button>
+
+        <div class="aditionals__container">
+          <div
+            class="checkbox"
+            v-for="adiconal in adicionaisdata"
+            :key="adiconal.id"
+          >
+            <input
+              type="checkbox"
+              name="adicionais"
+              v-model="adicionais"
+              :value="adiconal.tipo"
+            />
+            <span>{{ adiconal.tipo }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="size">
+        <span class="s">
+          <input type="radio" id="s" name="size" hidden />
+          <label for="s">S</label>
+        </span>
+        <span class="m">
+          <input type="radio" id="m" name="size" checked hidden />
+          <label for="m">M</label>
+        </span>
+        <span class="l">
+          <input type="radio" id="l" name="size" hidden />
+          <label for="l">L</label>
+        </span>
+      </div>
+
+      <div class="request">
+        <div class="request__name">
+          <input type="text" name="nome" id="nome" v-model="nome" required />
+          <label for="nome">Nome completo</label>
+        </div>
+
+        <div class="amount">
+          <button>-</button>
+          <input type="text" value="" disabled />
+          <button>+</button>
+        </div>
+
+        <input type="submit" class="submit-btn" value="Request" />
+      </div>
+    </div>
+
+    <div>
+      <img src="img/calabresa.png" alt="" />
     </div>
   </div>
 </template>
@@ -129,11 +200,126 @@ export default {
 </script>
 
 <style scoped>
-#pizza-form {
+.title {
+  text-align: center;
+}
+.title h1 {
+  font-family: "Fjalla One", sans-serif;
+  margin-bottom: 10px;
+}
+.title p {
+  font-family: "Poppins", sans-serif;
+}
+.info__container {
+  display: grid;
+  grid-template-columns: 32% 30% 32%;
+  gap: 3%;
+}
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.options #borda {
+  background: linear-gradient(45deg, #e9e4e48a, #e8cfcf63);
+  backdrop-filter: blur(12px);
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  width: 250px;
+  outline: none;
+}
+.options button {
+  width: 150px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.aditionals__container {
+  display: none;
+}
+.size {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3%;
+  margin: 20px 0;
+}
+.size label {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease-in-out;
+}
+.size input:checked + label {
+  background-color: #fff;
+  width: 55px;
+  height: 55px;
+  font-size: 20px;
+}
+.request__name {
+  position: relative;
+}
+.request__name input {
+  border: solid 1px #ccc;
+  border-radius: 1rem;
+  background: none;
+  padding: 1em;
+  transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.request__name label {
+  position: absolute;
+  left: 16px;
+  top: 13px;
+  color: rgb(117, 117, 117);
+  font-size: 14px;
+  padding: 0 0.1em;
+  pointer-events: none;
+  transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.request__name input:focus {
+  outline: none;
+  border: solid 1px #626060;
+  border-radius: 1rem;
+  background: none;
+  padding: 1rem;
+  transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.request__name input:focus + label,
+.request__name input:valid + label {
+  background-color: #fff;
+  padding: 0 0.2em;
+  color: #626060;
+  top: -10px;
+}
+.amount button {
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.amount input {
+  background: none;
+  border: none;
+  width: 60px;
+}
+/* #pizza-form {
   max-width: 400px;
   margin: 0 auto;
 }
-
 .input-container {
   display: flex;
   flex-direction: column;
@@ -196,5 +382,5 @@ select {
 .submit-btn:hover {
   background-color: rgba(0, 0, 0, 0.378);
   color: #222;
-}
+} */
 </style>
