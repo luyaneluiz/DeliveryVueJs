@@ -58,7 +58,7 @@ export default {
 
 .scroll__arrow {
   position: absolute;
-  top: 85%;
+  top: 83%;
   display: flex;
   flex-direction: column;
   align-items: center;
