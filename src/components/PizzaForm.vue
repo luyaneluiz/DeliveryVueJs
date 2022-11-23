@@ -66,18 +66,23 @@
     <div class="info__container">
       <div class="options">
         <select name="borda" id="borda" v-model="borda">
-          <option value="0" selected>Change board</option>
+          <option :value="false" :selected="borda">Change board</option>
           <option v-for="borda in bordas" :key="borda.id" :value="borda.tipo">
             {{ borda.tipo }}
           </option>
         </select>
 
-        <button>
+        <button v-if="!showAditionals" v-on:click="showAditionals = true">
           <i class="bx bx-plus"></i>
           Aditionals
         </button>
 
-        <div class="aditionals__container">
+        <button v-if="showAditionals" v-on:click="showAditionals = false">
+          <i class="bx bx-minus"></i>
+          Aditionals
+        </button>
+
+        <div v-if="showAditionals" class="aditionals__container">
           <div
             class="checkbox"
             v-for="adiconal in adicionaisdata"
@@ -146,6 +151,7 @@ export default {
       adicionais: [],
       status: "Solicitado",
       msg: null,
+      showAditionals: false,
     };
   },
   components: {
@@ -219,6 +225,7 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  position: relative;
 }
 .options #borda {
   background: linear-gradient(45deg, #e9e4e48a, #e8cfcf63);
@@ -239,9 +246,18 @@ export default {
   align-items: center;
   justify-content: center;
   gap: 5px;
+  cursor: pointer;
+  z-index: 2;
 }
 .aditionals__container {
-  display: none;
+  position: absolute;
+  bottom: -115%;
+  background: white;
+  border-radius: 0 0 15px 15px;
+  padding: 20px 15px 10px 15px;
+  width: 150px;
+  z-index: 1;
+  border: 1px solid #ccc;
 }
 .size {
   display: flex;
