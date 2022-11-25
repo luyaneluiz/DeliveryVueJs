@@ -83,7 +83,7 @@
         </button>
 
         <div v-if="showAditionals" class="aditionals__container">
-          <div
+          <label
             class="checkbox"
             v-for="adiconal in adicionaisdata"
             :key="adiconal.id"
@@ -95,7 +95,7 @@
               :value="adiconal.tipo"
             />
             <span>{{ adiconal.tipo }}</span>
-          </div>
+          </label>
         </div>
       </div>
 
@@ -120,9 +120,9 @@
           <label for="nome">Nome completo</label>
         </div>
 
-        <div class="amount">
-          <button>-</button>
-          <input type="text" value="" disabled />
+        <div class="amount" v-bind="amount">
+          <button @click="amount--">-</button>
+          <div>{{ amount }}</div>
           <button>+</button>
         </div>
 
@@ -130,8 +130,13 @@
       </div>
     </div>
 
-    <div>
+    <div class="select__sabor">
+      <label for="">
+        <input type="radio" name="" id="" />
+      </label>
+      <!-- 
       <img src="img/calabresa.png" alt="" />
+      <img src="img/calabresa.png" alt="" /> -->
     </div>
   </div>
 </template>
@@ -152,6 +157,7 @@ export default {
       status: "Solicitado",
       msg: null,
       showAditionals: false,
+      amount: 0,
     };
   },
   components: {
@@ -233,7 +239,7 @@ export default {
   border: none;
   border-radius: 8px;
   padding: 8px;
-  width: 250px;
+  width: 150px;
   outline: none;
 }
 .options button {
@@ -254,11 +260,18 @@ export default {
   bottom: -115%;
   background: white;
   border-radius: 0 0 15px 15px;
-  padding: 20px 15px 10px 15px;
+  padding: 20px 15px 15px 15px;
   width: 150px;
   z-index: 1;
   border: 1px solid #ccc;
 }
+.aditionals__container .checkbox {
+  display: flex;
+  gap: 5%;
+  font-size: 15px;
+  cursor: pointer;
+}
+
 .size {
   display: flex;
   align-items: center;
@@ -277,12 +290,14 @@ export default {
   align-items: center;
   justify-content: center;
   transition: all 0.5s ease-in-out;
+  color: #626262;
 }
 .size input:checked + label {
   background-color: #fff;
   width: 55px;
   height: 55px;
   font-size: 20px;
+  color: #373737;
 }
 .request__name {
   position: relative;
@@ -319,6 +334,10 @@ export default {
   color: #626060;
   top: -10px;
 }
+.amount {
+  display: flex;
+  padding: 15px 0;
+}
 .amount button {
   width: 30px;
   height: 30px;
@@ -327,11 +346,26 @@ export default {
   border-radius: 50%;
   cursor: pointer;
 }
-.amount input {
-  background: none;
-  border: none;
-  width: 60px;
+.amount div {
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
 }
+
+.submit-btn {
+  padding: 8px 15px;
+  border-radius: 15px;
+  background-color: #f3f3f3;
+  border: 1px solid #ccc;
+  color: #626262;
+}
+
+.select__sabor label {
+  background: url("/public/img/calabresa.png");
+}
+
 /* #pizza-form {
   max-width: 400px;
   margin: 0 auto;
