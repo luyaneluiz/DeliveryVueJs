@@ -17,8 +17,8 @@
           <label for="borda">Escolha a borda:</label>
           <select name="borda" id="borda" v-model="borda">
             <option value="">Selecione a borda</option>
-            <option v-for="borda in bordas" :key="borda.id" :value="borda.tipo">
-              {{ borda.tipo }}
+            <option v-for="borda in bordas" :key="borda.id" :value="borda.name">
+              {{ borda.name }}
             </option>
           </select>
         </div>
@@ -29,9 +29,9 @@
             <option
               v-for="sabor in sabores"
               :key="sabor.id"
-              :value="sabor.tipo"
+              :value="sabor.name"
             >
-              {{ sabor.tipo }}
+              {{ sabor.name }}
             </option>
           </select>
         </div>
@@ -46,9 +46,9 @@
               type="checkbox"
               name="adicionais"
               v-model="adicionais"
-              :value="adiconal.tipo"
+              :value="adiconal.name"
             />
-            <span>{{ adiconal.tipo }}</span>
+            <span>{{ adiconal.name }}</span>
           </div>
         </div>
 
@@ -58,17 +58,17 @@
       </form>
     </div> -->
 
-    <div class="title">
-      <h1>Pepperoni Pizza</h1>
-      <p>THE MOST CHOSEN</p>
+    <div class="title" v-for="sabor in sabores" :key="sabor.id">
+      <h1 v-if="sabor.selected">{{ sabor.tipo }}</h1>
+      <p v-if="sabor.selected">{{ sabor.label }}</p>
     </div>
 
     <div class="info__container">
       <div class="options">
         <select name="borda" id="borda" v-model="borda">
           <option :value="false" :selected="borda">Change board</option>
-          <option v-for="borda in bordas" :key="borda.id" :value="borda.tipo">
-            {{ borda.tipo }}
+          <option v-for="borda in bordas" :key="borda.id" :value="borda.name">
+            {{ borda.name }}
           </option>
         </select>
 
@@ -92,9 +92,9 @@
               type="checkbox"
               name="adicionais"
               v-model="adicionais"
-              :value="adiconal.tipo"
+              :value="adiconal.name"
             />
-            <span>{{ adiconal.tipo }}</span>
+            <span>{{ adiconal.name }}</span>
           </label>
         </div>
       </div>
@@ -130,13 +130,18 @@
       </div>
     </div>
 
-    <div class="select__sabor">
-      <label for="">
-        <input type="radio" name="" id="" />
+    <div class="select__sabor" v-bind="sabor">
+      <label :for="sabor.id" v-for="sabor in sabores" :key="sabor.id">
+        <input
+          type="radio"
+          name="sabor"
+          :id="sabor.id"
+          hidden
+          :checked="sabor.selected"
+          @click="updateSelected"
+        />
+        <img :src="sabor.img" alt="" />
       </label>
-      <!-- 
-      <img src="img/calabresa.png" alt="" />
-      <img src="img/calabresa.png" alt="" /> -->
     </div>
   </div>
 </template>
@@ -171,6 +176,18 @@ export default {
       this.bordas = data.bordas;
       this.sabores = data.sabores;
       this.adicionaisdata = data.adicionais;
+    },
+    async updateSelected() {
+      // let sabores = document.querySelector(".select__sabor");
+      // let inputs = sabores.querySelectorAll("input");
+
+      // inputs.forEach((input) => {
+      //   if (input.checked) {
+      //     let selected = input.id;
+      //   }
+      // });
+
+      console.log(dataJson, req);
     },
     async createPizza(e) {
       e.preventDefault();
@@ -360,10 +377,6 @@ export default {
   background-color: #f3f3f3;
   border: 1px solid #ccc;
   color: #626262;
-}
-
-.select__sabor label {
-  background: url("/public/img/calabresa.png");
 }
 
 /* #pizza-form {

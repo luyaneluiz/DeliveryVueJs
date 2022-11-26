@@ -35,10 +35,10 @@
             <option
               v-for="s in status"
               :key="s.id"
-              :value="s.tipo"
-              :selected="pizza.status == s.tipo"
+              :value="s.name"
+              :selected="pizza.status == s.name"
             >
-              {{ s.tipo }}
+              {{ s.name }}
             </option>
           </select>
           <button class="delete-btn" @click="deletePizza(pizza.id)">
