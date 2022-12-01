@@ -137,7 +137,6 @@
           name="sabor"
           :id="sabor.id"
           hidden
-          :checked="sabor.selected"
           @click="updateSelected"
         />
         <img :src="sabor.img" alt="" />
@@ -152,6 +151,7 @@ export default {
   name: "PizzaForm",
   data() {
     return {
+      selected: 1,
       bordas: null,
       sabores: null,
       adicionaisdata: null,
@@ -178,16 +178,16 @@ export default {
       this.adicionaisdata = data.adicionais;
     },
     async updateSelected() {
+      let inputsSelect = document.querySelectorAll('[name="sabor"]');
+
+      console.log(inputsSelect);
       // let sabores = document.querySelector(".select__sabor");
       // let inputs = sabores.querySelectorAll("input");
-
       // inputs.forEach((input) => {
       //   if (input.checked) {
       //     let selected = input.id;
       //   }
       // });
-
-      console.log(dataJson, req);
     },
     async createPizza(e) {
       e.preventDefault();
@@ -224,6 +224,9 @@ export default {
   },
   mounted() {
     this.getIngredientes();
+  },
+  updated() {
+    this.updateSelected();
   },
 };
 </script>
@@ -377,6 +380,11 @@ export default {
   background-color: #f3f3f3;
   border: 1px solid #ccc;
   color: #626262;
+}
+
+.select__sabor {
+  display: flex;
+  overflow: scroll hidden;
 }
 
 /* #pizza-form {
