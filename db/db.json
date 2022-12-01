@@ -25,23 +25,28 @@
     "sabores": [
       {
         "id": 1,
-        "tipo": "4 queijos"
+        "tipo": "4 queijos",
+        "img": "img/4queijos.png"
       },
       {
         "id": 2,
-        "tipo": "Frango com catupiry"
+        "tipo": "Frango com catupiry",
+        "img": "img/frango&catupiry.png"
       },
       {
         "id": 3,
-        "tipo": "Marguerita"
+        "tipo": "Marguerita",
+        "img": "img/marguerita.png"
       },
       {
         "id": 4,
-        "tipo": "Vegetais"
+        "tipo": "Vegetais",
+        "img": "img/vegetais.png"
       },
       {
         "id": 5,
-        "tipo": "Calabresa"
+        "tipo": "Calabresa",
+        "img": "img/calabresa.png"
       }
     ],
     "adicionais": [
