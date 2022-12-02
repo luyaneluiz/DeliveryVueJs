@@ -59,8 +59,8 @@
     </div> -->
 
     <div class="title" v-for="sabor in sabores" :key="sabor.id">
-      <h1 v-if="sabor.selected">{{ sabor.tipo }}</h1>
-      <p v-if="sabor.selected">{{ sabor.label }}</p>
+      <h1 v-if="sabor.id == selected">{{ sabor.tipo }}</h1>
+      <p v-if="sabor.id == selected">{{ sabor.label }}</p>
     </div>
 
     <div class="info__container">
@@ -177,17 +177,24 @@ export default {
       this.sabores = data.sabores;
       this.adicionaisdata = data.adicionais;
     },
-    async updateSelected() {
+    async setSelected() {
       let inputsSelect = document.querySelectorAll('[name="sabor"]');
 
-      console.log(inputsSelect);
-      // let sabores = document.querySelector(".select__sabor");
-      // let inputs = sabores.querySelectorAll("input");
-      // inputs.forEach((input) => {
-      //   if (input.checked) {
-      //     let selected = input.id;
-      //   }
-      // });
+      inputsSelect.forEach((input) => {
+        if (input.id == this.selected) {
+          input.setAttribute("checked", true);
+        }
+      });
+    },
+    async updateSelected() {
+      console.log(this);
+      let inputsSelect = document.querySelectorAll('[name="sabor"]');
+
+      inputsSelect.forEach((input) => {
+        if (input.checked == true) {
+          this.selected = input.id;
+        }
+      });
     },
     async createPizza(e) {
       e.preventDefault();
@@ -226,7 +233,7 @@ export default {
     this.getIngredientes();
   },
   updated() {
-    this.updateSelected();
+    this.setSelected();
   },
 };
 </script>
@@ -385,6 +392,10 @@ export default {
 .select__sabor {
   display: flex;
   overflow: scroll hidden;
+}
+
+.select__sabor label {
+  cursor: pointer;
 }
 
 /* #pizza-form {
