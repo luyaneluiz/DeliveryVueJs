@@ -1,7 +1,6 @@
 <template>
-  <div>
-    <Message :msg="msg" v-show="msg" />
-    <!-- <div>
+  <Message :msg="msg" v-show="msg" />
+  <!-- <div>
       <form id="pizza-form" @submit="createPizza">
         <div class="input-container">
           <label for="nome">Nome do cliente:</label>
@@ -57,7 +56,7 @@
         </div>
       </form>
     </div> -->
-
+  <div class="details__container">
     <div class="title" v-for="sabor in sabores" :key="sabor.id">
       <h1 v-if="sabor.id == selected">{{ sabor.tipo }}</h1>
       <p v-if="sabor.id == selected">{{ sabor.label }}</p>
@@ -129,8 +128,20 @@
         <input type="submit" class="submit-btn" value="Request" />
       </div>
     </div>
+  </div>
 
-    <div class="select__sabor" v-bind="sabor">
+  <div class="select__sabor" v-bind="sabor">
+    <div class="select__arrows">
+      <i
+        class="bx bx-left-arrow-circle bx-lg"
+        @click="scrollSelect($event)"
+      ></i>
+      <i
+        class="bx bx-right-arrow-circle bx-lg"
+        @click="scrollSelect($event)"
+      ></i>
+    </div>
+    <div class="select__container">
       <label :for="sabor.id" v-for="sabor in sabores" :key="sabor.id">
         <input
           type="radio"
@@ -151,7 +162,7 @@ export default {
   name: "PizzaForm",
   data() {
     return {
-      selected: 1,
+      selected: 2,
       bordas: null,
       sabores: null,
       adicionaisdata: null,
@@ -187,7 +198,6 @@ export default {
       });
     },
     async updateSelected() {
-      console.log(this);
       let inputsSelect = document.querySelectorAll('[name="sabor"]');
 
       inputsSelect.forEach((input) => {
@@ -228,6 +238,27 @@ export default {
       this.sabor = "";
       this.adicionais = "";
     },
+
+    scrollSelect(event) {
+      let previous = this.selected - 1;
+      let next = this.selected + 1;
+
+      if (event.target.classList.contains("bx-left-arrow-circle")) {
+        let previousElement = document.getElementById(previous);
+        previousElement.setAttribute("checked", true);
+
+        this.selected = previousElement.id;
+      }
+
+      if (event.target.classList.contains("bx-right-arrow-circle")) {
+        let nextElement = document.getElementById(next);
+        nextElement.setAttribute("checked", true);
+
+        this.selected = nextElement.id;
+      }
+
+      console.log(this.selected);
+    },
   },
   mounted() {
     this.getIngredientes();
@@ -239,6 +270,9 @@ export default {
 </script>
 
 <style scoped>
+.details__container {
+  padding: 0 100px;
+}
 .title {
   text-align: center;
 }
@@ -298,7 +332,6 @@ export default {
   font-size: 15px;
   cursor: pointer;
 }
-
 .size {
   display: flex;
   align-items: center;
@@ -390,12 +423,44 @@ export default {
 }
 
 .select__sabor {
+  overflow: hidden;
+  height: 56vh;
+  width: 100%;
+  position: relative;
+}
+
+.select__arrows {
+  position: absolute;
+  width: 100%;
   display: flex;
-  overflow: scroll hidden;
+  justify-content: center;
+  gap: 15vw;
+  z-index: 1;
+  cursor: pointer;
 }
 
 .select__sabor label {
   cursor: pointer;
+}
+
+.select__container {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  transform: translateX(0);
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.select__container img {
+  object-fit: cover;
+  width: 40vw;
+  transition: all 0.5s ease-in-out;
+}
+.select__container input:checked + img {
+  object-fit: cover;
+  object-position: top;
+  width: 50vw;
+  margin: 0 5vw;
 }
 
 /* #pizza-form {
