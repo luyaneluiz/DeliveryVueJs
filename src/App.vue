@@ -32,7 +32,7 @@ export default {
 }
 
 .main-container {
-  margin: 109px 50px 0 50px;
+  margin-top: 109px;
   min-height: 250px;
 }
 
