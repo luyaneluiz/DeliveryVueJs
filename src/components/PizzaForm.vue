@@ -202,7 +202,7 @@ export default {
 
       inputsSelect.forEach((input) => {
         if (input.checked == true) {
-          this.selected = input.id;
+          this.selected = parseInt(input.id);
         }
       });
     },
@@ -240,24 +240,31 @@ export default {
     },
 
     scrollSelect(event) {
-      let previous = this.selected - 1;
-      let next = this.selected + 1;
+      let previous = this.selected - 1 < 1 ? 5 : this.selected - 1;
+      let next = this.selected + 1 > 5 ? 1 : this.selected + 1;
+
+      let inputs = document.querySelectorAll('[name="sabor"]');
+
+      inputs.forEach((input) => {
+        input.removeAttribute("checked");
+      });
 
       if (event.target.classList.contains("bx-left-arrow-circle")) {
         let previousElement = document.getElementById(previous);
         previousElement.setAttribute("checked", true);
 
-        this.selected = previousElement.id;
+        this.selected = parseInt(previousElement.id);
       }
 
       if (event.target.classList.contains("bx-right-arrow-circle")) {
         let nextElement = document.getElementById(next);
         nextElement.setAttribute("checked", true);
 
-        this.selected = nextElement.id;
+        this.selected = parseInt(nextElement.id);
       }
 
-      console.log(this.selected);
+      previous = this.selected - 1 < 1 ? 5 : this.selected - 1;
+      next = this.selected + 1 > 5 ? 1 : this.selected + 1;
     },
   },
   mounted() {
