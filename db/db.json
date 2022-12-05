@@ -27,35 +27,30 @@
         "id": 1,
         "tipo": "4 queijos",
         "img": "img/4queijos.png",
-        "selected": true,
         "label": "THE MOST CHOSEN"
       },
       {
         "id": 2,
         "tipo": "Frango com catupiry",
         "img": "img/frango&catupiry.png",
-        "selected": false,
         "label": "BEST SELLER"
       },
       {
         "id": 3,
         "tipo": "Marguerita",
         "img": "img/marguerita.png",
-        "selected": false,
         "label": "THE FAVORITE"
       },
       {
         "id": 4,
         "tipo": "Vegetais",
         "img": "img/vegetais.png",
-        "selected": false,
         "label": "ANIMAL FRIENDLY"
       },
       {
         "id": 5,
         "tipo": "Calabresa",
         "img": "img/calabresa.png",
-        "selected": false,
         "label": "IN PROMOTION"
       }
     ],
