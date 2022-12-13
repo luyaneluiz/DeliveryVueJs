@@ -27,31 +27,36 @@
         "id": 1,
         "tipo": "4 queijos",
         "img": "img/4queijos.png",
-        "label": "THE MOST CHOSEN"
+        "label": "THE MOST CHOSEN",
+        "price": 8.6
       },
       {
         "id": 2,
         "tipo": "Frango com catupiry",
         "img": "img/frango&catupiry.png",
-        "label": "BEST SELLER"
+        "label": "BEST SELLER",
+        "price": 9.4
       },
       {
         "id": 3,
         "tipo": "Marguerita",
         "img": "img/marguerita.png",
-        "label": "THE FAVORITE"
+        "label": "THE FAVORITE",
+        "price": 9
       },
       {
         "id": 4,
         "tipo": "Vegetais",
         "img": "img/vegetais.png",
-        "label": "ANIMAL FRIENDLY"
+        "label": "ANIMAL FRIENDLY",
+        "price": 8
       },
       {
         "id": 5,
         "tipo": "Calabresa",
         "img": "img/calabresa.png",
-        "label": "IN PROMOTION"
+        "label": "IN PROMOTION",
+        "price": 9.5
       }
     ],
     "adicionais": [
