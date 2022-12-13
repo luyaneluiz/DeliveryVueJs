@@ -57,90 +57,74 @@
       </form>
     </div> -->
   <div class="details__container">
-    <div class="title" v-for="sabor in sabores" :key="sabor.id">
-      <h1 v-if="sabor.id == selected">{{ sabor.tipo }}</h1>
-      <p v-if="sabor.id == selected">{{ sabor.label }}</p>
-    </div>
-
-    <div class="info__container">
-      <div class="options">
-        <select name="borda" id="borda" v-model="borda">
-          <option :value="false" :selected="borda">Change board</option>
-          <option v-for="borda in bordas" :key="borda.id" :value="borda.name">
-            {{ borda.name }}
-          </option>
-        </select>
-
-        <button v-if="!showAditionals" v-on:click="showAditionals = true">
-          <i class="bx bx-plus"></i>
-          Aditionals
-        </button>
-
-        <button v-if="showAditionals" v-on:click="showAditionals = false">
-          <i class="bx bx-minus"></i>
-          Aditionals
-        </button>
-
-        <div v-if="showAditionals" class="aditionals__container">
-          <label
-            class="checkbox"
-            v-for="adiconal in adicionaisdata"
-            :key="adiconal.id"
-          >
-            <input
-              type="checkbox"
-              name="adicionais"
-              v-model="adicionais"
-              :value="adiconal.name"
-            />
-            <span>{{ adiconal.name }}</span>
-          </label>
+    <a name="selectSabor">
+      <div class="title" v-for="sabor in sabores" :key="sabor.id">
+        <h1 v-if="sabor.id == selected">{{ sabor.tipo }}</h1>
+        <p v-if="sabor.id == selected">{{ sabor.label }}</p>
+      </div>
+      <div class="info__container">
+        <div class="options">
+          <select name="borda" id="borda" v-model="borda">
+            <option :value="false" :selected="borda">Change board</option>
+            <option v-for="borda in bordas" :key="borda.id" :value="borda.name">
+              {{ borda.name }}
+            </option>
+          </select>
+          <button v-if="!showAditionals" v-on:click="showAditionals = true">
+            <i class="bx bx-plus"></i>
+            Aditionals
+          </button>
+          <button v-if="showAditionals" v-on:click="showAditionals = false">
+            <i class="bx bx-minus"></i>
+            Aditionals
+          </button>
+          <div v-if="showAditionals" class="aditionals__container">
+            <label
+              class="checkbox"
+              v-for="adiconal in adicionaisdata"
+              :key="adiconal.id"
+            >
+              <input
+                type="checkbox"
+                name="adicionais"
+                v-model="adicionais"
+                :value="adiconal.name"
+              />
+              <span>{{ adiconal.name }}</span>
+            </label>
+          </div>
+        </div>
+        <div class="size">
+          <span class="s">
+            <input type="radio" id="s" name="size" hidden />
+            <label for="s">S</label>
+          </span>
+          <span class="m">
+            <input type="radio" id="m" name="size" checked hidden />
+            <label for="m">M</label>
+          </span>
+          <span class="l">
+            <input type="radio" id="l" name="size" hidden />
+            <label for="l">L</label>
+          </span>
+        </div>
+        <div class="request">
+          <div class="request__name">
+            <input type="text" name="nome" id="nome" v-model="nome" required />
+            <label for="nome">Nome completo</label>
+          </div>
+          <div class="amount" v-bind="amount">
+            <button @click="amount--">-</button>
+            <div>{{ amount }}</div>
+            <button>+</button>
+          </div>
+          <input type="submit" class="submit-btn" value="Request" />
         </div>
       </div>
-
-      <div class="size">
-        <span class="s">
-          <input type="radio" id="s" name="size" hidden />
-          <label for="s">S</label>
-        </span>
-        <span class="m">
-          <input type="radio" id="m" name="size" checked hidden />
-          <label for="m">M</label>
-        </span>
-        <span class="l">
-          <input type="radio" id="l" name="size" hidden />
-          <label for="l">L</label>
-        </span>
-      </div>
-
-      <div class="request">
-        <div class="request__name">
-          <input type="text" name="nome" id="nome" v-model="nome" required />
-          <label for="nome">Nome completo</label>
-        </div>
-
-        <div class="amount" v-bind="amount">
-          <button @click="amount--">-</button>
-          <div>{{ amount }}</div>
-          <button>+</button>
-        </div>
-
-        <input type="submit" class="submit-btn" value="Request" />
-      </div>
-    </div>
+    </a>
   </div>
 
   <div class="select__sabor" v-bind="sabor">
-    <div class="select__arrows">
-      <i
-        class="bx bx-left-arrow-circle bx-lg"
-        @click="scrollSelect($event)"
-      ></i>
-      <i
-        class="bx bx-right-arrow-circle bx-lg"
-        @click="scrollSelect($event)"
-      ></i>
-    </div>
     <div class="select__container">
       <label :for="sabor.id" v-for="sabor in sabores" :key="sabor.id">
         <input
@@ -162,7 +146,7 @@ export default {
   name: "PizzaForm",
   data() {
     return {
-      selected: 2,
+      selected: 1,
       bordas: null,
       sabores: null,
       adicionaisdata: null,
@@ -194,6 +178,27 @@ export default {
       inputsSelect.forEach((input) => {
         if (input.id == this.selected) {
           input.setAttribute("checked", true);
+
+          let container = input.closest(".select__container");
+          console.log(container);
+
+          switch (input.id) {
+            case "1":
+              container.style.transform = "translateX(20vw)";
+              break;
+            case "2":
+              container.style.transform = "translateX(-20vw)";
+              break;
+            case "3":
+              container.style.transform = "translateX(-60vw)";
+              break;
+            case "4":
+              container.style.transform = "translateX(-100vw)";
+              break;
+            case "5":
+              container.style.transform = "translateX(-140vw)";
+              break;
+          }
         }
       });
     },
@@ -237,34 +242,6 @@ export default {
       this.borda = "";
       this.sabor = "";
       this.adicionais = "";
-    },
-
-    scrollSelect(event) {
-      let previous = this.selected - 1 < 1 ? 5 : this.selected - 1;
-      let next = this.selected + 1 > 5 ? 1 : this.selected + 1;
-
-      let inputs = document.querySelectorAll('[name="sabor"]');
-
-      inputs.forEach((input) => {
-        input.removeAttribute("checked");
-      });
-
-      if (event.target.classList.contains("bx-left-arrow-circle")) {
-        let previousElement = document.getElementById(previous);
-        previousElement.setAttribute("checked", true);
-
-        this.selected = parseInt(previousElement.id);
-      }
-
-      if (event.target.classList.contains("bx-right-arrow-circle")) {
-        let nextElement = document.getElementById(next);
-        nextElement.setAttribute("checked", true);
-
-        this.selected = parseInt(nextElement.id);
-      }
-
-      previous = this.selected - 1 < 1 ? 5 : this.selected - 1;
-      next = this.selected + 1 > 5 ? 1 : this.selected + 1;
     },
   },
   mounted() {
@@ -435,24 +412,13 @@ export default {
   width: 100%;
   position: relative;
 }
-
-.select__arrows {
-  position: absolute;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 15vw;
-  z-index: 1;
-  cursor: pointer;
-}
-
 .select__sabor label {
   cursor: pointer;
 }
 
 .select__container {
   display: flex;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.7s ease-in-out;
   transform: translateX(0);
   align-items: baseline;
   justify-content: space-between;
@@ -469,72 +435,4 @@ export default {
   width: 50vw;
   margin: 0 5vw;
 }
-
-/* #pizza-form {
-  max-width: 400px;
-  margin: 0 auto;
-}
-.input-container {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-}
-
-label {
-  font-weight: bold;
-  margin-bottom: 15px;
-  color: #222;
-  padding: 5px 10px;
-  border-left: 4px solid #fcba03;
-}
-
-input,
-select {
-  padding: 5px 10px;
-  width: 300px;
-}
-
-#adicionais-container {
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-#adicionais-title {
-  width: 100%;
-}
-
-.checkbox-container {
-  display: flex;
-  align-items: center;
-  width: 50%;
-  margin-bottom: 20px;
-  justify-content: flex-start;
-}
-
-.checkbox-container span,
-.checkbox-container input {
-  width: auto;
-}
-
-.checkbox-container span {
-  font-weight: bold;
-  margin-left: 6px;
-}
-
-.submit-btn {
-  background-color: #222;
-  color: #fcba03;
-  font-weight: bold;
-  border: 2px solid #222;
-  padding: 10px;
-  font-size: 16px;
-  margin: 0 auto;
-  cursor: pointer;
-  transition: 0.5s;
-}
-
-.submit-btn:hover {
-  background-color: rgba(0, 0, 0, 0.378);
-  color: #222;
-} */
 </style>
