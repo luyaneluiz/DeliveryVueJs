@@ -9,10 +9,10 @@
         veniam nesciunt.
       </p>
     </div>
-    <div class="scroll__arrow">
+    <a href="#selectSabor" class="scroll__arrow">
       <span>FAÇA SEU PEDIDO</span>
       <i class="bx bx-chevrons-down bx-lg bx-fade-down"></i>
-    </div>
+    </a>
   </div>
 </template>
 
@@ -64,6 +64,7 @@ export default {
   align-items: center;
   width: 100%;
   color: #e7e7e7;
+  text-decoration: none;
 }
 
 .scroll__arrow span {
