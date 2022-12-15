@@ -42,14 +42,14 @@
         "tipo": "Marguerita",
         "img": "img/marguerita.png",
         "label": "THE FAVORITE",
-        "price": 9
+        "price": 9.0
       },
       {
         "id": 4,
         "tipo": "Vegetais",
         "img": "img/vegetais.png",
         "label": "ANIMAL FRIENDLY",
-        "price": 8
+        "price": 8.0
       },
       {
         "id": 5,
